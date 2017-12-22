@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "top.bdwuzhou.mytime"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+
+    implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
+//    implementation("com.android.support:recyclerview-v7:${SUPPORT_VERSION}") {
+//        exclude group: 'com.android.support'
+//    }
+//    implementation("com.android.support:cardview-v7:${SUPPORT_VERSION}") {
+//        exclude group: 'com.android.support'
+//    }
+//    implementation("com.android.support:design:${SUPPORT_VERSION}") {
+//        exclude group: 'com.android.support'
+//    }
+
+    implementation "com.android.support.constraint:constraint-layout:${CONSTRAINTLAYOUT_VERSION}"
+//    implementation('com.qmuiteam:qmui:1.0.4') {
+//        exclude group: 'com.android.support'
+//    }
+
+    implementation "io.reactivex.rxjava2:rxjava:${RXJAVA2_VERSION}"
+    implementation "io.reactivex.rxjava2:rxandroid:${RXANDROID_VERSION}"
+
+    implementation "com.jakewharton.rxbinding2:rxbinding:${RXBINDING_VERSION}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${RXBINDING_VERSION}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:${RXBINDING_VERSION}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design:${RXBINDING_VERSION}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${RXBINDING_VERSION}"
+
+    implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit-converters:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:retrofit-adapters:${RETROFIT_VERSION}"
+    implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${RETROFIT_RXJAVA2_ADAPTER_VERSION}"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOGGING_VERSION}"
+
+    implementation "com.github.bumptech.glide:glide:${GLIDE_VERSION}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${GLIDE_VERSION}"
+
+    implementation "com.jakewharton:butterknife:${BUTTERKNIFE_VERSION}"
+    implementation "com.jakewharton:butterknife-compiler:${BUTTERKNIFE_VERSION}"
+
+    implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
+    implementation "com.google.dagger:dagger-android:${DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+
+    implementation "android.arch.persistence.room:runtime:${ROOM_VERSION}"
+    annotationProcessor "android.arch.persistence.room:compiler:${ROOM_VERSION}"
+    implementation "android.arch.persistence.room:rxjava2:${ROOM_VERSION}"
+
+    compile "org.projectlombok:lombok:${LOMBOK_VERSION}"
+
+    implementation "com.yanzhenjie:permission:${AND_PERMISSION_VERSION}"
+
+    implementation "com.airbnb.android:lottie:${LOTTIE_VERSION}"
+}
