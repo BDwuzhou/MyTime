@@ -5,9 +5,11 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import top.bdwuzhou.mytime.data.entity.BaiduAPIWrapper;
+import top.bdwuzhou.mytime.data.entity.BaiduCityNameResult;
+import top.bdwuzhou.mytime.data.entity.BaiduCoorResult;
 import top.bdwuzhou.mytime.data.entity.CitiesWrapper;
 import top.bdwuzhou.mytime.data.entity.City;
-import top.bdwuzhou.mytime.data.entity.CityNameWrapper;
 import top.bdwuzhou.mytime.data.entity.Comment;
 import top.bdwuzhou.mytime.data.entity.ImageWrapper;
 import top.bdwuzhou.mytime.data.entity.Member;
@@ -26,9 +28,33 @@ import top.bdwuzhou.mytime.data.entity.VideoWrapper;
 
 public interface APIService {
 
+    /**
+     * 根据经纬度获取当前地址信息
+     *
+     * @param location 纬度，经度
+     * @param ak       百度ak
+     * @param mCode    SHA1码+包名
+     * @param json     返回结果为json格式
+     * @return 当前地址详细信息
+     */
     @GET("http://api.map.baidu.com/geocoder/v2/")
-    Observable<CityNameWrapper> getCityName(@Query("location") String location, @Query("ak") String ak, @Query
-            ("mcode") String mCode, @Query("output") String json);
+    Observable<BaiduAPIWrapper<BaiduCityNameResult>> getCityName(@Query("location") String location, @Query("ak")
+            String ak, @Query("mcode") String mCode, @Query("output") String json);
+
+    /**
+     * 转换地图坐标系统
+     *
+     * @param coords 源坐标：纬度，经度
+     * @param from   源类型
+     * @param to     目标类型
+     * @param ak     百度ak
+     * @param json   结果返回格式
+     * @return 转换后的结果
+     */
+    @GET("http://api.map.baidu.com/geoconv/v1/")
+    Observable<BaiduAPIWrapper<List<BaiduCoorResult>>> convertCoor(@Query("coords") String coords, @Query("from") int
+            from, @Query("to") int to, @Query("ak") String ak, @Query("mcode") String mcode, @Query("output") String
+            json);
 
     /**
      * @return 城市代码

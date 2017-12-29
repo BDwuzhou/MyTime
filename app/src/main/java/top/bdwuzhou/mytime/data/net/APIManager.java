@@ -19,9 +19,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Query;
 import top.bdwuzhou.mytime.Constants;
+import top.bdwuzhou.mytime.data.entity.BaiduAPIWrapper;
+import top.bdwuzhou.mytime.data.entity.BaiduCityNameResult;
+import top.bdwuzhou.mytime.data.entity.BaiduCoorResult;
 import top.bdwuzhou.mytime.data.entity.CitiesWrapper;
 import top.bdwuzhou.mytime.data.entity.City;
-import top.bdwuzhou.mytime.data.entity.CityNameWrapper;
 import top.bdwuzhou.mytime.data.entity.Comment;
 import top.bdwuzhou.mytime.data.entity.ImageWrapper;
 import top.bdwuzhou.mytime.data.entity.Member;
@@ -84,9 +86,22 @@ public class APIManager {
      * @param location 纬度，经度
      * @return 根据经纬度获取城市名字
      */
-    public Observable<CityNameWrapper> getCityName(@Query("location") String location) {
+    public Observable<BaiduAPIWrapper<BaiduCityNameResult>> getCityName(@Query("location") String location) {
         return safeAPI()
                 .getCityName(location, "ReWIPfhZICmTXojT2P9awwDhTKj7lGE3",
+                        "44:AC:01:3F:1D:7E:D1:85:BD:7B:30:7C:A7:10:37:7C:72:FD:B1:97;top.bdwuzhou.mytime", "json")
+                .compose(applyTransform());
+    }
+
+    /**
+     * 转换地图坐标系统
+     *
+     * @param location 源坐标
+     * @return 转换后的结果
+     */
+    public Observable<BaiduAPIWrapper<List<BaiduCoorResult>>> convertCoor(@Query("location") String location) {
+        return safeAPI()
+                .convertCoor(location, 2, 5, "ReWIPfhZICmTXojT2P9awwDhTKj7lGE3",
                         "44:AC:01:3F:1D:7E:D1:85:BD:7B:30:7C:A7:10:37:7C:72:FD:B1:97;top.bdwuzhou.mytime", "json")
                 .compose(applyTransform());
     }

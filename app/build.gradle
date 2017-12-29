@@ -87,9 +87,11 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:${ROOM_VERSION}"
     implementation "android.arch.persistence.room:rxjava2:${ROOM_VERSION}"
 
-    compile "org.projectlombok:lombok:${LOMBOK_VERSION}"
+    provided "org.projectlombok:lombok:${LOMBOK_VERSION}"
 
     implementation "com.yanzhenjie:permission:${AND_PERMISSION_VERSION}"
 
     implementation "com.airbnb.android:lottie:${LOTTIE_VERSION}"
+
+    implementation "com.github.zellius:rxlocationmanager-rxjava2:${RXLOCATION_VERSION}"
 }
