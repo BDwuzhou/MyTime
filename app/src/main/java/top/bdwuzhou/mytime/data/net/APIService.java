@@ -37,7 +37,7 @@ public interface APIService {
      * @param json     返回结果为json格式
      * @return 当前地址详细信息
      */
-    @GET("http://api.map.baidu.com/geocoder/v2/")
+    @GET("http://api.map.baidu.com/geocoder/v2")
     Observable<BaiduAPIWrapper<BaiduCityNameResult>> getCityName(@Query("location") String location, @Query("ak")
             String ak, @Query("mcode") String mCode, @Query("output") String json);
 
@@ -51,7 +51,7 @@ public interface APIService {
      * @param json   结果返回格式
      * @return 转换后的结果
      */
-    @GET("http://api.map.baidu.com/geoconv/v1/")
+    @GET("http://api.map.baidu.com/geoconv/v1")
     Observable<BaiduAPIWrapper<List<BaiduCoorResult>>> convertCoor(@Query("coords") String coords, @Query("from") int
             from, @Query("to") int to, @Query("ak") String ak, @Query("mcode") String mcode, @Query("output") String
             json);
@@ -125,6 +125,6 @@ public interface APIService {
      * @param movieId 影片id
      * @return 剧照
      */
-    @GET("Movie/ImageAll.api?movieId=?")
+    @GET("Movie/ImageAll.api")
     Observable<ImageWrapper> getImages(@Query("movieId") int movieId);
 }
